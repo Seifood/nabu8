@@ -16,29 +16,10 @@
 # limitations under the License.
 #
 
-# Installs gsi keys into ramdisk, to boot a2 developer GSI with verified boot.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
-
-# Virtual A/B Inherits
-#(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
-
-# Setup dalvik vm configs
-$(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
-
 # Inherit from nabu device
 $(call inherit-product, device/xiaomi/nabu/device.mk)
-
-$(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-
-# Inherit some common TWRP stuff (if kernel tree exists) ## TESTING ##.
-ifneq ($(wildcard $(TARGET_KERNEL_SOURCE)),)
-    $(call inherit-product, vendor/twrp/config/common.mk)
-endif
-
-PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,device/xiaomi/nabu/recovery/root,recovery/root) \
-$(call find-copy-subdir-files,*,$(LOCAL_PATH)/recovery/root/vendor/firmware,$(TARGET_COPY_OUT_RECOVERY)/root/vendor/firmware) \
-$(call find-copy-subdir-files,*,$(LOCAL_PATH)/recovery/root/system,$(TARGET_COPY_OUT_RECOVERY)/root/system)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
+$(call inherit-product, vendor/twrp/config/common.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := nabu
