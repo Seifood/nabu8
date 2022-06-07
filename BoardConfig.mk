@@ -131,7 +131,7 @@ DEVICE_MATRIX_FILE := $(DEVICE_PATH)/recovery/root/vendor/etc/compatibility_matr
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/recovery/root/vendor/etc/manifest.xml
 
 # Recovery
-TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
+TARGET_RECOVERY_PIXEL_FORMAT := "ABGR_8888"
 TARGET_USES_MKE2FS := true
 # Allow LZ4 compression
 #BOARD_RAMDISK_USE_LZ4 := true
